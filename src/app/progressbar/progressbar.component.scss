@@ -1,0 +1,13 @@
+#progressbar {
+  //max-width: 320px;
+  background-color: #f0f5ff;
+  border-radius: 4px;
+}
+
+#progressbar>div {
+  background-color: #0040ff;
+  width: 0;
+  /* Adjust with JavaScript */
+  height: 4px;
+  border-radius: 10px;
+}
