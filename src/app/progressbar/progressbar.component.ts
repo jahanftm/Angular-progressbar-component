@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-progressbar',
@@ -18,6 +18,9 @@ export class ProgressbarComponent implements OnInit {
   @Input()
   now = 0;
 
+  @Input()
+  backgroundColor: string = '#0040ff';
+
   constructor() {
   }
 
@@ -25,7 +28,7 @@ export class ProgressbarComponent implements OnInit {
     this.progress = this.calcProgress() + '%';
   }
 
-  private calcProgress(): number {
+  calcProgress(): number {
     return ((this.now - this.start) / (this.end - this.start)) * 100;
   }
 

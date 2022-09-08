@@ -1,3 +1,12 @@
 <app-card>
-  <app-progressbar [start]="10" [end]="40" [now]="3"></app-progressbar>1
+  <h1>progressbar with different colors</h1>
+  <div>
+    <app-progressbar [start]="10" [end]="40" [now]="30"></app-progressbar>
+    <br>
+    <br>
+    <app-progressbar [start]="10" [end]="40" [now]="18" [backgroundColor]="'#009688'"></app-progressbar>
+    <br>
+    <br>
+    <app-progressbar [start]="10" [end]="40" [now]="39" [backgroundColor]="'#673ab7'"></app-progressbar>
+  </div>
 </app-card>

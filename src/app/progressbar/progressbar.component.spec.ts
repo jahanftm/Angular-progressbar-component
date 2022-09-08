@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProgressbarComponent } from './progressbar.component';
 
-describe('ProgressbarComponent', () => {
+fdescribe('ProgressbarComponent', () => {
   let component: ProgressbarComponent;
   let fixture: ComponentFixture<ProgressbarComponent>;
 
@@ -20,4 +20,20 @@ describe('ProgressbarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('test calcProgress function', ()=> {
+    component.now = 5;
+    component.end = 13;
+    component.start = 1;
+    component.ngOnInit();
+    expect(component.calcProgress()).toBeCloseTo(33.33, 2);
+  })
+
+  it('test progress', () => {
+    component.now = 10;
+    component.end = 30;
+    component.start = 5;
+    component.ngOnInit();
+    expect(component.progress).toEqual('20%');
+  })
 });
