@@ -29,6 +29,9 @@ export class ProgressbarComponent implements OnInit {
   }
 
   calcProgress(): number {
+    if(this.now >= this.end) {
+      return 100;
+    }
     return ((this.now - this.start) / (this.end - this.start)) * 100;
   }
 

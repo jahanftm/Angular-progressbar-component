@@ -36,4 +36,11 @@ fdescribe('ProgressbarComponent', () => {
     component.ngOnInit();
     expect(component.progress).toEqual('20%');
   })
+
+  it('now time greater than end time', ()=> {
+    component.now = 50;
+    component.end = 30;
+    component.start = 5;
+    expect(component.calcProgress()).toEqual(100);
+  })
 });
