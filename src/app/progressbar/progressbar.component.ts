@@ -1,11 +1,11 @@
-import {Component, ElementRef, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 
 @Component({
   selector: 'app-progressbar',
   templateUrl: './progressbar.component.html',
   styleUrls: ['./progressbar.component.scss']
 })
-export class ProgressbarComponent implements OnInit {
+export class ProgressbarComponent implements OnInit, OnChanges {
 
   progress: string = '0%';
 
@@ -16,7 +16,7 @@ export class ProgressbarComponent implements OnInit {
   end = 0;
 
   @Input()
-  now = 0;
+  currentTime = 0;
 
   @Input()
   backgroundColor: string = '#0040ff';
@@ -24,15 +24,21 @@ export class ProgressbarComponent implements OnInit {
   constructor() {
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if(changes['currentTime'].currentValue !== changes['currentTime'].previousValue) {
+      this.progress = this.calcProgress() + '%';
+    }
+  }
+
   ngOnInit(): void {
-    this.progress = this.calcProgress() + '%';
+
   }
 
   calcProgress(): number {
-    if(this.now >= this.end) {
+    if (this.currentTime >= this.end) {
       return 100;
     }
-    return ((this.now - this.start) / (this.end - this.start)) * 100;
+    return ((this.currentTime - this.start) / (this.end - this.start)) * 100;
   }
 
 }

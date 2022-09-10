@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProgressbarComponent } from './progressbar.component';
+import {SimpleChange} from "@angular/core";
 
 fdescribe('ProgressbarComponent', () => {
   let component: ProgressbarComponent;
@@ -22,7 +23,7 @@ fdescribe('ProgressbarComponent', () => {
   });
 
   it('test calcProgress function', ()=> {
-    component.now = 5;
+    component.currentTime = 5;
     component.end = 13;
     component.start = 1;
     component.ngOnInit();
@@ -30,15 +31,20 @@ fdescribe('ProgressbarComponent', () => {
   })
 
   it('test progress', () => {
-    component.now = 10;
+    component.currentTime = 10;
     component.end = 30;
     component.start = 5;
-    component.ngOnInit();
+
+    component.ngOnChanges({
+      currentTime: new SimpleChange(0, component.currentTime, true)
+    });
+
+    fixture.detectChanges();
     expect(component.progress).toEqual('20%');
   })
 
-  it('now time greater than end time', ()=> {
-    component.now = 50;
+  it('when the current time is greater than the end time', ()=> {
+    component.currentTime = 50;
     component.end = 30;
     component.start = 5;
     expect(component.calcProgress()).toEqual(100);
